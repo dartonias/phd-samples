@@ -1,0 +1,23 @@
+<params>
+<!--
+L - Linear size of the square system
+ANum - the size of region A (in spins)
+grow - how large we attempt to grow the system (scales as 2^N)
+beta - the inverse temperature of the simulation
+J - the coulping strength
+mcs - Number of total monte carlo steps
+eqs - Number of total equilibration steps
+bins - Number of bins of data collection
+random - random seed for the simulation
+-->
+<vars
+L="20"
+ANum="aaa"
+beta="bbb"
+J="1.0"
+mcs="1000"
+eqs="10000"
+bins="200"
+random="6546"
+/>
+</params>
