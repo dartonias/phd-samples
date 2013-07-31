@@ -211,10 +211,10 @@ when examining the difference between a layer being or not being in the simulati
                 # Build the matrix connecting this spin and the next
                 bonds_a = self.Bonds_on_spin(spins[s])
                 bonds_b = self.Bonds_on_spin(spins[(s+1)%len(spins)])
-                tMat = np.matrix([[np.exp(-1.0*self.p.beta*self.p.J*(-1.0 + ((self.Spins[i][bonds_a[1].b]+1)%2+(self.Spins[i][bonds_a[3].a]+1)%2-2.0)/2.0 + ((self.Spins[i][bonds_b[1].b]+1)%2+(self.Spins[i][bonds_b[3].a]+1)%2-2.0)/2.0)),
-                np.exp(-1.0*self.p.beta*self.p.J*(1.0 + ((self.Spins[i][bonds_a[1].b]+1)%2+(self.Spins[i][bonds_a[3].a]+1)%2-2.0)/2.0 + ((self.Spins[i][bonds_b[1].b]+0)%2+(self.Spins[i][bonds_b[3].a]+0)%2-2.0)/2.0))],
-                [np.exp(-1.0*self.p.beta*self.p.J*(1.0 + ((self.Spins[i][bonds_a[1].b]+0)%2+(self.Spins[i][bonds_a[3].a]+0)%2-2.0)/2.0 + ((self.Spins[i][bonds_b[1].b]+1)%2+(self.Spins[i][bonds_b[3].a]+1)%2-2.0)/2.0)),
-                np.exp(-1.0*self.p.beta*self.p.J*(-1.0 + ((self.Spins[i][bonds_a[1].b]+0)%2+(self.Spins[i][bonds_a[3].a]+0)%2-2.0)/2.0 + ((self.Spins[i][bonds_b[1].b]+0)%2+(self.Spins[i][bonds_b[3].a]+0)%2-2.0)/2.0))]])
+                tMat = np.matrix([[np.exp(-1.0*self.p.beta*self.p.J*(-1.0 + ((self.Spins[i][bonds_a[1].b]+0)%2+(self.Spins[i][bonds_a[3].a]+0)%2-1.0) + ((self.Spins[i][bonds_b[1].b]+0)%2+(self.Spins[i][bonds_b[3].a]+0)%2-1.0))),
+                np.exp(-1.0*self.p.beta*self.p.J*(1.0 + ((self.Spins[i][bonds_a[1].b]+0)%2+(self.Spins[i][bonds_a[3].a]+0)%2-1.0) + ((self.Spins[i][bonds_b[1].b]+1)%2+(self.Spins[i][bonds_b[3].a]+1)%2-1.0)))],
+                [np.exp(-1.0*self.p.beta*self.p.J*(1.0 + ((self.Spins[i][bonds_a[1].b]+1)%2+(self.Spins[i][bonds_a[3].a]+1)%2-1.0) + ((self.Spins[i][bonds_b[1].b]+0)%2+(self.Spins[i][bonds_b[3].a]+0)%2-1.0))),
+                np.exp(-1.0*self.p.beta*self.p.J*(-1.0 + ((self.Spins[i][bonds_a[1].b]+1)%2+(self.Spins[i][bonds_a[3].a]+1)%2-1.0) + ((self.Spins[i][bonds_b[1].b]+1)%2+(self.Spins[i][bonds_b[3].a]+1)%2-1.0)))]])
                 temp_Mat = temp_Mat * tMat/tMat.max()
                 Z_new += np.log(tMat.max())
             Z_new += np.log(temp_Mat.trace()[0,0])
@@ -222,10 +222,10 @@ when examining the difference between a layer being or not being in the simulati
         for s in range(len(spins)):
             bonds_a = self.Bonds_on_spin(spins[s])
             bonds_b = self.Bonds_on_spin(spins[(s+1)%len(spins)])
-            tMat = np.matrix([[np.exp(-1.0*self.p.beta*self.p.J*(-2.0 + ((self.Spins[0][bonds_a[1].b]+1)%2 + (self.Spins[0][bonds_a[3].a]+1)%2 + (self.Spins[0][bonds_b[1].b]+1)%2 + (self.Spins[0][bonds_b[3].a]+1)%2 + (self.Spins[1][bonds_a[1].b]+1)%2 + (self.Spins[1][bonds_a[3].a]+1)%2 + (self.Spins[1][bonds_b[1].b]+1)%2 + (self.Spins[1][bonds_b[3].a]+1)%2-8.0)/2.0)),
-            np.exp(-1.0*self.p.beta*self.p.J*(-2.0 + ((self.Spins[0][bonds_a[1].b]+1)%2 + (self.Spins[0][bonds_a[3].a]+1)%2 + (self.Spins[0][bonds_b[1].b]+0)%2 + (self.Spins[0][bonds_b[3].a]+0)%2 + (self.Spins[1][bonds_a[1].b]+1)%2 + (self.Spins[1][bonds_a[3].a]+1)%2 + (self.Spins[1][bonds_b[1].b]+0)%2 + (self.Spins[1][bonds_b[3].a]+0)%2-8.0)/2.0))],
-            [np.exp(-1.0*self.p.beta*self.p.J*(-2.0 + ((self.Spins[0][bonds_a[1].b]+0)%2 + (self.Spins[0][bonds_a[3].a]+0)%2 + (self.Spins[0][bonds_b[1].b]+1)%2 + (self.Spins[0][bonds_b[3].a]+1)%2 + (self.Spins[1][bonds_a[1].b]+0)%2 + (self.Spins[1][bonds_a[3].a]+0)%2 + (self.Spins[1][bonds_b[1].b]+1)%2 + (self.Spins[1][bonds_b[3].a]+1)%2-8.0)/2.0)),
-            np.exp(-1.0*self.p.beta*self.p.J*(-2.0 + ((self.Spins[0][bonds_a[1].b]+0)%2 + (self.Spins[0][bonds_a[3].a]+0)%2 + (self.Spins[0][bonds_b[1].b]+0)%2 + (self.Spins[0][bonds_b[3].a]+0)%2 + (self.Spins[1][bonds_a[1].b]+0)%2 + (self.Spins[1][bonds_a[3].a]+0)%2 + (self.Spins[1][bonds_b[1].b]+0)%2 + (self.Spins[1][bonds_b[3].a]+0)%2-8.0)/2.0))]])
+            tMat = np.matrix([[np.exp(-1.0*self.p.beta*self.p.J*(-2.0 + ((self.Spins[0][bonds_a[1].b]+0)%2 + (self.Spins[0][bonds_a[3].a]+0)%2 + (self.Spins[0][bonds_b[1].b]+0)%2 + (self.Spins[0][bonds_b[3].a]+0)%2 + (self.Spins[1][bonds_a[1].b]+0)%2 + (self.Spins[1][bonds_a[3].a]+0)%2 + (self.Spins[1][bonds_b[1].b]+0)%2 + (self.Spins[1][bonds_b[3].a]+0)%2-4.0))),
+            np.exp(-1.0*self.p.beta*self.p.J*(-2.0 + ((self.Spins[0][bonds_a[1].b]+0)%2 + (self.Spins[0][bonds_a[3].a]+0)%2 + (self.Spins[0][bonds_b[1].b]+1)%2 + (self.Spins[0][bonds_b[3].a]+1)%2 + (self.Spins[1][bonds_a[1].b]+0)%2 + (self.Spins[1][bonds_a[3].a]+0)%2 + (self.Spins[1][bonds_b[1].b]+1)%2 + (self.Spins[1][bonds_b[3].a]+1)%2-4.0)))],
+            [np.exp(-1.0*self.p.beta*self.p.J*(-2.0 + ((self.Spins[0][bonds_a[1].b]+1)%2 + (self.Spins[0][bonds_a[3].a]+1)%2 + (self.Spins[0][bonds_b[1].b]+0)%2 + (self.Spins[0][bonds_b[3].a]+0)%2 + (self.Spins[1][bonds_a[1].b]+1)%2 + (self.Spins[1][bonds_a[3].a]+1)%2 + (self.Spins[1][bonds_b[1].b]+0)%2 + (self.Spins[1][bonds_b[3].a]+0)%2-4.0))),
+            np.exp(-1.0*self.p.beta*self.p.J*(-2.0 + ((self.Spins[0][bonds_a[1].b]+1)%2 + (self.Spins[0][bonds_a[3].a]+1)%2 + (self.Spins[0][bonds_b[1].b]+1)%2 + (self.Spins[0][bonds_b[3].a]+1)%2 + (self.Spins[1][bonds_a[1].b]+1)%2 + (self.Spins[1][bonds_a[3].a]+1)%2 + (self.Spins[1][bonds_b[1].b]+1)%2 + (self.Spins[1][bonds_b[3].a]+1)%2-4.0)))]])
             temp_Mat = temp_Mat * tMat/tMat.max()
             Z_curr += np.log(tMat.max())
         Z_curr += np.log(temp_Mat.trace()[0,0])

@@ -13,7 +13,7 @@ rcParams['axes.color_cycle'] = [c1,c2,c3,c4]
 
 from matplotlib import pyplot as plt
 
-regions = [400,380,360,340,320,300,280,260,240,220,200,180,160,140,120,100,80,60,40,20]
+regions = [100,90,80,70,60,50,40,30,20,10]
 numsteps = int((5.-1.)/0.2)
 temps = [1.0+0.2*i for i in range(numsteps+1)]
 temps[-1:] = [np.exp(np.log(5.) + 0.1*i) for i in range(1,10)]
